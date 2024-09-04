@@ -12,6 +12,5 @@ int main(){
         printf("\n%dº ímpar: %d -- Soma = %d\n", contador + 1, n, soma);
         n += 2;
         contador++;
-
     }
 }
