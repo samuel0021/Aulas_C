@@ -6,8 +6,12 @@
 #include <stdlib.h>
 
 const char userADM[10] = "samuel0021", senhaADM[10] = "123456";
+
+// variáveis de login
 char user[10] = "", senha[10] = "";
-int validacao, continuar = 0;
+
+// variáveis de controle
+int validacao, continuar;
 
 int main(){
     setlocale(LC_ALL, "");
@@ -95,6 +99,62 @@ int login(){
 }
 
 int cadastro(){
+
+    // variáveis de cadastro
+    char cadUser[10] = "", cadSenha[10] = "", confirmaSenha[10] = "";
+
+
     printf("\n      - - - Tela de Cadastro - - -       \n");
+
+    do{
+        printf("\n - Digite seu usuário: ");
+        scanf("%s", &cadUser);
+        printf("\n - Digite sua senha: ");
+        scanf("%s", &cadSenha);
+        printf("\n - Confirme sua senha: ");
+        scanf("%s", &confirmaSenha);
+
+        if(strcmp(cadSenha, confirmaSenha) == 0){
+            printf("\n\nUsuário e senha cadastrados com sucesso!\n");
+            validacao = 1;
+        }
+        else{
+            do{
+                printf("\n\nUsuário ou senha incorretos!\n");
+                printf("\nDeseja tentar novamente?\n");
+                printf("\n(1) - Sim \n(0) - Não\n\n");
+                printf("Resposta: ");
+                scanf("%d", &continuar);
+                //getch();
+
+                switch(continuar){
+                    case 1:
+                        system("cls");
+                    break;
+
+                    case 0:
+                        printf("\nPrograma encerrado!\n");
+                        exit(0);
+                    break;
+
+                    default:
+                        printf("\nOpção inválida!");
+                        printf("\n\nPressione qualquer tecla para tentar novamente");
+                        getch();
+                        system("cls");
+                        //login();
+                    break;
+                }
+            }while(continuar != 1 && continuar != 0);
+        }
+    }while(validacao == 0);
 }
+
+
+
+
+
+
+
+
 
