@@ -107,9 +107,11 @@ int login(){
 
 int cadastro(){
 
-    printf("\n      - - - Tela de Cadastro - - -       \n");
+    validacao = 0;
 
     do{
+        printf("\n      - - - Tela de Cadastro - - -       \n");
+
         printf("\n - Digite seu usuário: ");
         scanf("%s", &cadUser);
         printf("\n - Digite sua senha: ");
@@ -176,7 +178,7 @@ int vaiPraOnde(){
             break;
 
             case 3:
-                printf("\n\nPrograma encerrado!");
+                printf("\nPrograma encerrado!\n");
                 exit(0);
             break;
 
