@@ -6,14 +6,15 @@ int main(){
     setlocale(LC_ALL, "");
 
     float temp, C, F, K;
-    int escolha, continuar = 1;
+    int escolha, continuar;
 
     do{
         printf("\nDigite o valor da temperatura(somente números): ");
         scanf("%f", &temp);
         fflush(stdin);
         printf("\nEscolha a escala: ");
-        printf("\n(1) - Celsius \n(2) - Fahrenheit \n(3) - Kelvin\n\n");
+        printf("\n\n(1) - Celsius \n(2) - Fahrenheit \n(3) - Kelvin\n\n");
+        printf("Reposta: ");
         //escolha = getchar();
         scanf("%d", &escolha);
 
@@ -51,8 +52,13 @@ int main(){
         }
         printf("\n----------------------------------------------");
         printf("\n\nDeseja tentar novamente?\n");
-        printf("\n(1) - Sim \n(0) - Não\n");
+        printf("\n(1) - Sim \n(0) - Não\n\n");
+        printf("Resposta: ");
         scanf("%d", &continuar);
+
+        if(continuar == 1){
+            system("cls");
+        }
 
     }while(continuar);
 }
