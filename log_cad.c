@@ -5,13 +5,21 @@
 #include <strings.h>
 #include <stdlib.h>
 
+#define MAX_USERS 100
+#define MAX_LENGTH 50
+
 const char userADM[10] = "samuel0021", senhaADM[10] = "123456";
 
 // variáveis de login
-char user[10] = "", senha[10] = "";
+//char user[10] = "", senha[10] = "";
+
+// usuários
+char users[MAX_USERS][MAX_LENGTH];
+char passwords[MAX_USERS][MAX_LENGTH];
+int totalUsers = 0;
 
 // variáveis de cadastro
-char cadUser[10] = "", cadSenha[10] = "", confirmaSenha[10] = "";
+//char cadUser[10] = "", cadSenha[10] = "", confirmaSenha[10] = "";
 
 // variáveis de controle
 int validacao, continuar;
@@ -26,7 +34,7 @@ int main(){
         printf("\n           - - - Menu - - -       \n");
 
         printf("\nEscolha a tela: \n");
-        printf("\n(1) - Login \n(2) - Cadastro");
+        printf("\n(1) - Login \n(2) - Cadastro \n(3) - Usuários");
         printf("\n\nResposta: ");
         scanf("%d", &opcao);
 
@@ -41,6 +49,11 @@ int main(){
                 cadastro();
             break;
 
+            case 3:
+                system("cls");
+                showUsers();
+            break;
+
             default:
                 printf("\nOpção inválida!");
                 printf("\n\nPressione qualquer tecla para tentar novamente");
@@ -53,7 +66,7 @@ int main(){
 }
 
 int login(){
-
+    char user[MAX_LENGTH], pass[MAX_LENGTH];
     validacao = 0;
 
     do{
@@ -62,18 +75,20 @@ int login(){
         printf("\n - Digite seu usuário: ");
         scanf("%s", &user);
         printf("\n - Digite sua senha: ");
-        scanf("%s", &senha);
+        scanf("%s", &pass);
 
-        printf("\n\n%s %s", user, senha);
+        printf("\n\n%s %s", user, pass);
 
-        if(strcmp(userADM, user) == 0 && strcmp(senhaADM, senha) == 0){
+        for(int i = 0; i < totalUsers; i++){
+            if(strcmp(users[i], user) == 0 && strcmp(passwords[i], pass) == 0){
+                printf("\n\nCertin vai la\n");
+                validacao = 1;
 
-            printf("\n\nCertin vai la\n");
-            validacao = 1;
-
-            vaiPraOnde();
+                vaiPraOnde();
+                break;
+            }
         }
-        else{
+
             do{
                 printf("\n\nUsuário ou senha incorretos!\n");
                 printf("\nDeseja tentar novamente?\n");
@@ -101,11 +116,12 @@ int login(){
                     break;
                 }
             }while(continuar != 1 && continuar != 0);
-        }
+        //}
     }while(validacao == 0);
 }
 
 int cadastro(){
+    char user[MAX_LENGTH], pass[MAX_LENGTH], confirmPass[MAX_LENGTH];
 
     validacao = 0;
 
@@ -113,14 +129,20 @@ int cadastro(){
         printf("\n      - - - Tela de Cadastro - - -       \n");
 
         printf("\n - Digite seu usuário: ");
-        scanf("%s", &cadUser);
+        scanf("%s", &user);
         printf("\n - Digite sua senha: ");
-        scanf("%s", &cadSenha);
+        scanf("%s", &pass);
         printf("\n - Confirme sua senha: ");
-        scanf("%s", &confirmaSenha);
+        scanf("%s", &confirmPass);
 
-        if(strcmp(cadSenha, confirmaSenha) == 0){
+        if(strcmp(pass, confirmPass) == 0){
+            strcpy(users[totalUsers], user);
+            strcpy(passwords[totalUsers], pass);
+
+            totalUsers++;
+
             printf("\n\nUsuário e senha cadastrados com sucesso!\n");
+
             validacao = 1;
 
             vaiPraOnde();
@@ -129,7 +151,7 @@ int cadastro(){
             do{
                 printf("\n\nUsuário ou senha incorretos!\n");
                 printf("\nDeseja tentar novamente?\n");
-                printf("\n(1) - Sim \n(0) - Não\n\n");
+                printf("\n(1) - Sim \n(2) - Não\n\n");
                 printf("Resposta: ");
                 scanf("%d", &continuar);
 
@@ -138,9 +160,9 @@ int cadastro(){
                         system("cls");
                     break;
 
-                    case 0:
-                        printf("\nPrograma encerrado!\n");
-                        exit(0);
+                    case 2:
+                        system("cls");
+                        vaiPraOnde();
                     break;
 
                     default:
@@ -162,7 +184,7 @@ int vaiPraOnde(){
     do{
         printf("\n------------------------\n\n");
         printf("Vai pra onde agora?");
-        printf("\n\n(1) - Login \n(2) - Cadastro \n(3) - Sair");
+        printf("\n\n(1) - Login \n(2) - Cadastro \n(3) - Usuários \n(4) - Sair");
         printf("\n\nResposta: ");
         scanf("%d", &vaiPraLa);
 
@@ -178,6 +200,11 @@ int vaiPraOnde(){
             break;
 
             case 3:
+                system("cls");
+                showUsers();
+            break;
+
+            case 4:
                 printf("\nPrograma encerrado!\n");
                 exit(0);
             break;
@@ -191,3 +218,19 @@ int vaiPraOnde(){
         }
     }while(vaiPraLa != 1 && vaiPraLa != 2 && vaiPraLa != 3);
 }
+
+int showUsers(){
+    printf("\n      - - - Usuários - - -       \n\n");
+
+    for(int i = 0; i < totalUsers; i++){
+        printf("\nUsuário: %s - Senha: %s \n", users[i], passwords[i]);
+    }
+
+    vaiPraOnde();
+}
+
+
+
+
+
+
