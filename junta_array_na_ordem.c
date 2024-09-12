@@ -10,11 +10,11 @@ int main(){
     int arraySoma[10];
     int length = sizeof(arraySoma) / sizeof(arraySoma[0]);
 
-    for(int i = 0, j = 0; i < 10 && j < 5; i += 2, j++){
+    for(int i = 0, j = 0; i < length && j < (length / 2); i += 2, j++){
         arraySoma[i] = array1[j];
     }
 
-    for(int i = 1, j = 0; i < 10 && j < 5; i += 2, j++){
+    for(int i = 1, j = 0; i < length && j < (length / 2); i += 2, j++){
         arraySoma[i] = array2[j];
     }
 
