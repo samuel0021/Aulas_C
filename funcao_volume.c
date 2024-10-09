@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <locale.h>
+#include <C:\Users\UNIP\Documents\function.h>
 
 int main(){
     setlocale(LC_ALL, "");
@@ -10,7 +11,7 @@ int main(){
     printf("\nDigite o valor da aresta do cubo: ");
     scanf("%f", &a);
 
-    float calcVolume(float);
+    //float calcVolume(float);
 
     v = calcVolume(a);
 
@@ -18,10 +19,10 @@ int main(){
 
 }
 
-float calcVolume(float a){
+/*float calcVolume(float a){
     float v;
 
     v = pow(a, 3);
 
     return(v);
-}
+}*/
